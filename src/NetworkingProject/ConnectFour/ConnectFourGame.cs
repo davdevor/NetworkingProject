@@ -12,6 +12,10 @@ namespace ConnectFour
         private readonly int _height = 6;
         private readonly int[,] _board;
         
+        public int[,] GetBoard()
+        {
+            return _board;
+        }
         public ConnectFourGame()
         {
             _board = new int[_width, _height];
