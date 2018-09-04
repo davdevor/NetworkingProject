@@ -4,36 +4,41 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using ConnectFour;
 namespace WebAPI.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private static ConnectFourGame _gameObject = new ConnectFourGame();
+        private static int _players = 0;
+        private int _winner = 0;
+        private bool _won = false;
+        private bool _busy = false;
+        public int GetPlayerId()
         {
-            return new string[] { "value1", "value2" };
+            return ++_players;
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        public void PlayMove(int col, int playerId)
         {
-            return "value";
-        }
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
+            _busy = true;
+            _gameObject.PlayMove(col, playerId);
+            if (_gameObject.CheckForWinState(playerId))
+            {
+                _winner = playerId;
+                _won = true;
+            }
+            _busy = false;
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
         }
-
-        // DELETE api/values/5
-        public void Delete(int id)
+        public ConnectFourGame GetGameState()
         {
+            return _gameObject;
+        }
+        public bool IsTurn(int playerId)
+        {
+            return _busy;
         }
     }
 }
