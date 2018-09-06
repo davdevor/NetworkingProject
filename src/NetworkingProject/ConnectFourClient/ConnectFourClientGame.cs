@@ -17,6 +17,20 @@ namespace ConnectFourClient
         {
             _repo = connectFourAPIRepository;
         }
+        private string GetGameString(int[][] gameState)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0; i < gameState.Length; ++i)
+            {
+                for(int j = 0; j < gameState[i].Length; ++j)
+                {
+                    stringBuilder.Append(gameState[i][j]);
+                    stringBuilder.Append(' ');
+                }
+                stringBuilder.Append('\n');
+            }
+            return stringBuilder.ToString();
+        }
         public async Task StartAsync()
         {
             try
@@ -41,9 +55,10 @@ namespace ConnectFourClient
                     else
                     {
                         _gameState = await _repo.GetGameStateAsync();
+                        Console.WriteLine(GetGameString(_gameState));
                         Console.WriteLine("Enter in col");
                         int.TryParse(Console.ReadLine(), out col);
-                        await _repo.PlayMoveAsync(col, _playerId);
+                        await _repo.PlayMoveAsync(col-1, _playerId);
                     }
                 }
                 Console.Read();

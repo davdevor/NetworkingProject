@@ -18,15 +18,15 @@ namespace ConnectFour
         }
         public ConnectFourGame()
         {
-            _board = new int[_width, _height];
+            _board = new int[_height,_width];
         }
 
         public void PlayMove(int col, int playerId)
         {
-            int i = 0;
-            while(_board[i,col] != 0 && i < _height)
+            int i = _height - 1;
+            while(i > -1 && _board[i,col] != 0 )
             {
-                ++i;
+                --i;
             }
             _board[i, col] = playerId;
         }
@@ -34,9 +34,9 @@ namespace ConnectFour
         public bool CheckForWinState(int player)
         {
             // horizontalCheck 
-            for (int j = 0; j < _height - 3; j++)
+            for (int j = 0; j < _width - 3; j++)
             {
-                for (int i = 0; i < _width; i++)
+                for (int i = 0; i < _height; i++)
                 {
                     if (_board[i,j] == player && _board[i, j + 1] == player && _board[i,j + 2] == player && _board[i,j + 3] == player)
                     {
@@ -45,9 +45,9 @@ namespace ConnectFour
                 }
             }
             // verticalCheck
-            for (int i = 0; i < _width - 3; i++)
+            for (int i = 0; i < _height - 3; i++)
             {
-                for (int j = 0; j < _height; j++)
+                for (int j = 0; j < _width; j++)
                 {
                     if (_board[i,j] == player && _board[i + 1,j] == player && _board[i + 2,j] == player && _board[i + 3,j] == player)
                     {
@@ -56,18 +56,18 @@ namespace ConnectFour
                 }
             }
             // ascendingDiagonalCheck 
-            for (int i = 3; i < _width; i++)
+            for (int i = 3; i < _height; i++)
             {
-                for (int j = 0; j < _height - 3; j++)
+                for (int j = 0; j < _width - 3; j++)
                 {
                     if (_board[i,j] == player && _board[i - 1,j + 1] == player && _board[i - 2,j + 2] == player && _board[i - 3,j + 3] == player)
                         return true;
                 }
             }
             // descendingDiagonalCheck
-            for (int i = 3; i < _width; i++)
+            for (int i = 3; i < _height; i++)
             {
-                for (int j = 3; j < _height; j++)
+                for (int j = 3; j < _width; j++)
                 {
                     if (_board[i,j] == player && _board[i - 1,j - 1] == player && _board[i - 2,j - 2] == player && _board[i - 3,j - 3] == player)
                         return true;
