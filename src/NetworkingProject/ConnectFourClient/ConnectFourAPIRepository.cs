@@ -25,10 +25,10 @@ namespace ConnectFourClient
             return await _httpDeserializer.GetObjectAsync<bool>(url);
         }
 
-        public async Task PlayMoveAsync(int col, int playerId)
+        public async Task<bool> PlayMoveAsync(int col, int playerId)
         {
             string url = _baseUrl + string.Format("PlayMove?col={0}&playerid={1}", col, playerId);
-            await _httpClient.MakeRequestAsync(url);
+            return await _httpDeserializer.GetObjectAsync<bool>(url);
         }
 
         public async Task<int> GetPlayerIdAsync()

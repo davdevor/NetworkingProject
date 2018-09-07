@@ -8,7 +8,7 @@ namespace ConnectFourClient.Interfaces
         Task<int[][]> GetGameStateAsync();
         Task<int> GetPlayerIdAsync();
         Task<bool> IsMyTurnAsync(int playerId);
-        Task PlayMoveAsync(int col, int playerId);
+        Task<bool> PlayMoveAsync(int col, int playerId);
         Task ResetGameAsync();
     }
 }

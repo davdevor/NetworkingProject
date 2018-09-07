@@ -44,7 +44,7 @@ namespace ConnectFourClient
                     while (!await _repo.IsMyTurnAsync(_playerId))
                     {
                         Console.WriteLine("waiting...");
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                     }
                     winner = await _repo.CheckForWinnerAsync();
                     if (winner != 0)
@@ -58,12 +58,18 @@ namespace ConnectFourClient
                         Console.WriteLine(GetGameString(_gameState));
                         Console.WriteLine("Enter in col");
                         int.TryParse(Console.ReadLine(), out col);
-                        await _repo.PlayMoveAsync(col-1, _playerId);
+                        var validMove = await _repo.PlayMoveAsync(col-1, _playerId);
+                        while (!validMove)
+                        {
+                            Console.WriteLine("Enter in col");
+                            int.TryParse(Console.ReadLine(), out col);
+                            validMove = await _repo.PlayMoveAsync(col - 1, _playerId);
+                        }
                     }
                 }
                 Console.Read();
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 throw;
             }

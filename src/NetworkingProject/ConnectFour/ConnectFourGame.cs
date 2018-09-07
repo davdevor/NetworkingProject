@@ -23,6 +23,10 @@ namespace ConnectFour
 
         public bool PlayMove(int col, int playerId)
         {
+            if( col >= _width || col < 0 )
+            {
+                return false;
+            }
             int i = _height - 1;
             while(i > -1 && _board[i,col] != 0 )
             {
