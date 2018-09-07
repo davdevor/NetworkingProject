@@ -8,8 +8,8 @@ namespace ConnectFour
 {
     public class ConnectFourGame
     {
-        private readonly int _width = 7;
-        private readonly int _height = 6;
+        public readonly int _width = 7;
+        public readonly int _height = 6;
         private readonly int[,] _board;
         
         public int[,] GetBoard()
@@ -21,14 +21,20 @@ namespace ConnectFour
             _board = new int[_height,_width];
         }
 
-        public void PlayMove(int col, int playerId)
+        public bool PlayMove(int col, int playerId)
         {
             int i = _height - 1;
             while(i > -1 && _board[i,col] != 0 )
             {
                 --i;
             }
-            _board[i, col] = playerId;
+
+            bool validMove = i > -1;
+            if(validMove)
+            {
+                _board[i, col] = playerId;
+            }
+            return validMove;
         }
 
         public bool CheckForWinState(int player)

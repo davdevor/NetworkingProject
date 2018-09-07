@@ -65,10 +65,12 @@ namespace ConnectFourClient
             }
             catch(Exception e)
             {
-                await _repo.ResetGameAsync();
-                throw e;
+                throw;
             }
-            
+            finally
+            {
+                await _repo.ResetGameAsync();
+            }
         }
     }
 }

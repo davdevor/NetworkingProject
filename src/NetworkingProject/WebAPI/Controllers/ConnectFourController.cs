@@ -28,23 +28,26 @@ namespace WebAPI.Controllers
         public bool PlayMove(int col, int playerId)
         {
             
-            _gameObject.PlayMove(col, playerId);
-            if (_gameObject.CheckForWinState(playerId))
+            bool validMove = _gameObject.PlayMove(col, playerId);
+            if (validMove)
             {
-                _winner = playerId;
-            }
-            lock (_lock)
-            {
-                if (_currentPlayer == 1)
+                if (_gameObject.CheckForWinState(playerId))
                 {
-                    _currentPlayer = 2;
+                    _winner = playerId;
                 }
-                else
+                lock (_lock)
                 {
-                    _currentPlayer = 1;
+                    if (_currentPlayer == 1)
+                    {
+                        _currentPlayer = 2;
+                    }
+                    else
+                    {
+                        _currentPlayer = 1;
+                    }
                 }
             }
-            return true;
+            return validMove;
         }
 
         [AcceptVerbs("Get")]
