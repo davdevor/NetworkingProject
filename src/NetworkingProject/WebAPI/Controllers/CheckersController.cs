@@ -25,10 +25,10 @@ namespace WebAPI.Controllers
         }
 
         [AcceptVerbs("Get")]
-        public bool PlayMove(int fromX, int fromY, int toX, int toY)
+        public bool PlayMove(int fromRow, int fromCol, int toRow, int toCol)
         {
 
-            bool validMove = _gameObject.Move(fromX, fromY, toX, toY);
+            bool validMove = _gameObject.Move(fromRow, fromCol, toRow, toCol);
             if (validMove)
             {
                 int winner = _gameObject.CheckForWinState();
