@@ -26,30 +26,83 @@ namespace CheckersGame
         {
             return _board;
         }
-        public bool Move(int fromX, int fromY, int toX, int toY)
+        public bool Move(int fromRow, int fromCol, int toRow, int toCol)
         {
-            if (!ValidMove(fromX, fromY, toX, toY))
+            if (!ValidMove(fromRow, fromCol, toRow, toCol))
             {
                 return false;
             }
-            _board[toX, toY] = _board[fromX, fromY];
-            _board[fromX, fromY] = 0;
+            _board[toRow, toCol] = _board[fromRow, fromCol];
+            _board[fromRow, fromCol] = 0;
             return true;
         }
         public int CheckForWinState()
         {
-            if(_firstPlayerCount == 0)
+            if (_firstPlayerCount == 0)
             {
                 return 2;
             }
-            if(_secondPlayerCount == 0)
+            if (_secondPlayerCount == 0)
             {
                 return 1;
             }
             return 0;
         }
+        public bool CanJumpAgain(int fromRow, int fromCol)
+        {
+            int player = _board[fromRow, fromCol];
+            if (player == 0)
+            {
+                return false;
+            }
+            try
+            {
+                if (player == 1)
+                {
+
+                    if (_board[fromRow + 1, fromCol + 1] != 1 && _board[fromRow + 2, fromCol + 2] == 0)
+                    {
+                        return true;
+                    }
+                    else if (_board[fromRow + 1, fromCol - 1] != 1 && _board[fromRow + 2, fromCol - 2] == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (_board[fromRow - 1, fromCol + 1] != 2 && _board[fromRow - 1, fromCol + 2] == 0)
+                    {
+                        return true;
+                    }
+                    else if (_board[fromRow - 1, fromCol - 1] != 2 && _board[fromRow - 1, fromCol - 2] == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch(IndexOutOfRangeException)
+            {
+                return false;
+            }
+        }
+
         public bool ValidMove(int fromX, int fromY, int toX, int toY)
         {
+            if (fromX < 0 || fromX > 7 || fromY < 0 || fromY > 7 ||
+                toX < 0 || toX > 7 || toY < 0 || toY > 7)
+            {
+                return false;
+            }
             bool validMove;
             int player = _board[fromX, fromY];
             if (player == 0 || _board[toX, toY] != 0)
@@ -71,7 +124,7 @@ namespace CheckersGame
                     {
                         if (fromY < toY)
                         {
-                            if(_board[fromX + 1, fromY + 1] != 1)
+                            if (_board[fromX + 1, fromY + 1] != 1)
                             {
                                 _board[fromX + 1, fromY + 1] = 0;
                             }
@@ -82,7 +135,7 @@ namespace CheckersGame
                         }
                         else
                         {
-                            if(_board[fromX + 1, fromY - 1] != 1)
+                            if (_board[fromX + 1, fromY - 1] != 1)
                             {
                                 _board[fromX + 1, fromY - 1] = 0;
 
@@ -97,7 +150,7 @@ namespace CheckersGame
                     }
                 }
             }
-            else
+            else // player two
             {
                 bool xCheck = fromX - 1 == toX;
                 bool yCheck = fromY - 1 == toY || fromY + 1 == toY;
@@ -110,9 +163,9 @@ namespace CheckersGame
                     validMove = xCheck && yCheck;
                     if (validMove)
                     {
-                        if(fromY < toY)
+                        if (fromY < toY)
                         {
-                            if(_board[fromX - 1, fromY + 1] != 2)
+                            if (_board[fromX - 1, fromY + 1] != 2)
                             {
                                 _board[fromX - 1, fromY + 1] = 0;
 
@@ -124,7 +177,7 @@ namespace CheckersGame
                         }
                         else
                         {
-                            if(_board[fromX - 1, fromY - 1] != 2)
+                            if (_board[fromX - 1, fromY - 1] != 2)
                             {
                                 _board[fromX - 1, fromY - 1] = 0;
                             }
