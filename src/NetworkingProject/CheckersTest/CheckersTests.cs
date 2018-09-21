@@ -13,10 +13,10 @@ namespace CheckersTest
             Checkers target = new Checkers();
 
             // act
-            bool result = target.Move(2, 1, 3, 0);
+            var result = target.Move(2, 1, 3, 0);
 
             // assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[3, 0], 1);
             Assert.AreEqual(target.GetBoard()[2, 1], 0);
         }
@@ -28,10 +28,10 @@ namespace CheckersTest
             Checkers target = new Checkers();
 
             // act
-            bool result = target.Move(5, 0, 4, 1);
+            var result = target.Move(5, 0, 4, 1);
 
             // assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[5, 0], 0);
             Assert.AreEqual(target.GetBoard()[4, 1], 2);
         }
@@ -42,10 +42,10 @@ namespace CheckersTest
             Checkers target = new Checkers();
 
             // act
-            bool result = target.Move(1, 0, 2, 1);
+            var result = target.Move(1, 0, 2, 1);
 
             // assert
-            Assert.IsFalse(result);
+            Assert.IsFalse(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[1, 0], 1);
             Assert.AreEqual(target.GetBoard()[2, 1], 1);
         }
@@ -59,10 +59,10 @@ namespace CheckersTest
             // act
             target.Move(2, 1, 3, 2);
             target.Move(5, 0, 4, 1);
-            bool result = target.Move(3, 2, 4, 1);
+            var result = target.Move(3, 2, 4, 1);
 
             // assert
-            Assert.IsFalse(result);
+            Assert.IsFalse(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[3, 2], 1);
             Assert.AreEqual(target.GetBoard()[4, 1], 2);
         }
@@ -74,10 +74,10 @@ namespace CheckersTest
             Checkers target = new Checkers();
 
             // act
-            bool result = target.Move(1, 0, 2, -1);
+            var result = target.Move(1, 0, 2, -1);
 
             // assert
-            Assert.IsFalse(result);
+            Assert.IsFalse(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[1, 0], 1);
         }
 
@@ -90,10 +90,10 @@ namespace CheckersTest
             // act
             target.Move(2, 1, 3, 2);
             target.Move(5, 0, 4, 1);
-            bool result = target.Move(3, 2, 5, 0);
+            var result = target.Move(3, 2, 5, 0);
 
             // assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[5, 0], 1);
             Assert.AreEqual(target.GetBoard()[4, 1], 0);
         }
@@ -107,10 +107,10 @@ namespace CheckersTest
             // act
             target.Move(2, 1, 3, 2);
             target.Move(3, 2, 4, 3);
-            bool result = target.Move(4, 3, 6, 5);
+            var result = target.Move(4, 3, 6, 5);
 
             // assert
-            Assert.IsFalse(result);
+            Assert.IsFalse(result.ValidMove);
             Assert.AreEqual(target.GetBoard()[4,3], 1);
             Assert.AreEqual(target.GetBoard()[6, 5], 2);
         }

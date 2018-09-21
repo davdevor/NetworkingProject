@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CheckersConsole.Interfaces;
-
+using CheckersGame;
 namespace CheckersConsole
 {
     public class CheckersRepository : ICheckersRepository
@@ -25,10 +25,10 @@ namespace CheckersConsole
             return await _httpDeserializer.GetObjectAsync<bool>(url);
         }
 
-        public async Task<bool> PlayMoveAsync(int fromX, int fromY, int toX, int toY)
+        public async Task<Move> PlayMoveAsync(int fromX, int fromY, int toX, int toY)
         {
             string url = _baseUrl + string.Format("PlayMove?fromX={0}&fromY={1}&toX={2}&toY={3}",fromX,fromY,toX,toY);
-            return await _httpDeserializer.GetObjectAsync<bool>(url);
+            return await _httpDeserializer.GetObjectAsync<Move>(url);
         }
 
         public async Task<int> GetPlayerIdAsync()

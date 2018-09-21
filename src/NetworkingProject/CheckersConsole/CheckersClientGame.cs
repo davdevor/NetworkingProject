@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CheckersConsole.Interfaces;
 using System.Threading;
+using CheckersGame;
 namespace CheckersConsole
 {
     public class CheckersClientGame
@@ -54,22 +55,37 @@ namespace CheckersConsole
                     }
                     else
                     {
-                        bool validMove = false;
+                        Move move;
                         do
                         {
                             _gameState = await _repo.GetGameStateAsync();
                             Console.WriteLine(GetGameString(_gameState));
-                            Console.WriteLine("Enter in fromX");
+                            Console.WriteLine("Enter in fromRow");
                             int.TryParse(Console.ReadLine(), out fromX);
-                            Console.WriteLine("Enter in fromY");
+                            Console.WriteLine("Enter in fromCol");
                             int.TryParse(Console.ReadLine(), out fromY);
-                            Console.WriteLine("Enter in toX");
+                            Console.WriteLine("Enter in toRow");
                             int.TryParse(Console.ReadLine(), out toX);
-                            Console.WriteLine("Enter in toY");
+                            Console.WriteLine("Enter in toCol");
                             int.TryParse(Console.ReadLine(), out toY);
-                            validMove = await _repo.PlayMoveAsync(fromX -1, fromY -1, toX -1, toY -1);
+                            move = await _repo.PlayMoveAsync(fromX -1, fromY -1, toX -1, toY -1);
                         }
-                        while (!validMove);
+                        while (!move.ValidMove);
+                        _gameState = await _repo.GetGameStateAsync();
+                        Console.WriteLine(GetGameString(_gameState));
+                        while (move.AvailableMoves.Any())
+                        {
+                            Console.WriteLine("You can jump again");
+                            Console.WriteLine("Enter in fromRow");
+                            int.TryParse(Console.ReadLine(), out fromX);
+                            Console.WriteLine("Enter in fromCol");
+                            int.TryParse(Console.ReadLine(), out fromY);
+                            Console.WriteLine("Enter in toRow");
+                            int.TryParse(Console.ReadLine(), out toX);
+                            Console.WriteLine("Enter in toCol");
+                            int.TryParse(Console.ReadLine(), out toY);
+                            move = await _repo.PlayMoveAsync(fromX - 1, fromY - 1, toX - 1, toY - 1);
+                        }
                         _gameState = await _repo.GetGameStateAsync();
                         Console.WriteLine(GetGameString(_gameState));
                     }

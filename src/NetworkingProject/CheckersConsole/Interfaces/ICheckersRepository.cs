@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CheckersGame;
 namespace CheckersConsole.Interfaces
 {
     public interface ICheckersRepository
@@ -12,7 +12,7 @@ namespace CheckersConsole.Interfaces
         Task<int[][]> GetGameStateAsync();
         Task<int> GetPlayerIdAsync();
         Task<bool> IsMyTurnAsync(int playerId);
-        Task<bool> PlayMoveAsync(int fromX, int fromY, int toX, int toY);
+        Task<Move> PlayMoveAsync(int fromX, int fromY, int toX, int toY);
         Task ResetGameAsync();
     }
 }

@@ -25,30 +25,33 @@ namespace WebAPI.Controllers
         }
 
         [AcceptVerbs("Get")]
-        public bool PlayMove(int fromRow, int fromCol, int toRow, int toCol)
+        public Move PlayMove(int fromRow, int fromCol, int toRow, int toCol)
         {
 
-            bool validMove = _gameObject.Move(fromRow, fromCol, toRow, toCol);
-            if (validMove)
+            Move move = _gameObject.Move(fromRow, fromCol, toRow, toCol);
+            if (move.ValidMove)
             {
                 int winner = _gameObject.CheckForWinState();
                 if (winner!=0)
                 {
                     _winner = winner;
                 }
-                lock (_lock)
+                if (!move.AvailableMoves.Any())
                 {
-                    if (_currentPlayer == 1)
+                    lock (_lock)
                     {
-                        _currentPlayer = 2;
+                        if (_currentPlayer == 1)
+                        {
+                            _currentPlayer = 2;
+                        }
+                        else
+                        {
+                            _currentPlayer = 1;
+                        }
                     }
-                    else
-                    {
-                        _currentPlayer = 1;
-                    }
-                }
+                } 
             }
-            return validMove;
+            return move;
         }
 
         [AcceptVerbs("Get")]
