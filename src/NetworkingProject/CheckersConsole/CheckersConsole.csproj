@@ -61,11 +61,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CheckersGame\CheckersGame.csproj">
-      <Project>{3f8109aa-1315-44f7-85bc-9acf3c9c902d}</Project>
-      <Name>CheckersGame</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckersConsole.Interfaces
 {
+
     public interface IHttpDeserializer
     {
         Task<T> GetObjectAsync<T>(string url);

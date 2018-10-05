@@ -92,9 +92,6 @@ namespace CheckersConsole
                 }
                 Console.Read();
             }
-            catch (Exception )
-            {
-            }
             finally
             {
                 await _repo.ResetGameAsync();
