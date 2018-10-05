@@ -13,7 +13,7 @@ namespace Checkers.Domain.Interfaces
         /// </summary>
         /// <typeparam name="T">the type to deseriaize to</typeparam>
         /// <param name="obj">the serialized object</param>
-        /// <returns></returns>
+        /// <returns>The deserialzied object</returns>
         T Deserialize<T>(string obj);
     }
 }

@@ -37,7 +37,7 @@ namespace Checkers.Domain.Interfaces
         /// <param name="fromY">y location to move from</param>
         /// <param name="toX">x location to move to</param>
         /// <param name="toY">y location to move to</param>
-        /// <returns></returns>
+        /// <returns>next possible moves if any</returns>
         Task<Move> PlayMoveAsync(int fromX, int fromY, int toX, int toY);
         /// <summary>
         /// resets the entire game
