@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace WebAPI
+namespace Checkers.UI.WebAPI
 {
     public static class WebApiConfig
     {
