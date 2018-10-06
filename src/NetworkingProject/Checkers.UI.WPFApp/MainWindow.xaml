@@ -8,10 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-            <Label x:Name="StatusLabel" Content="Checkers" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
+            <Label x:Name="PlayerLabel" HorizontalAlignment="Center"></Label>
+            <Label x:Name="StatusLabel" Content="Checkers" HorizontalAlignment="Center"></Label>
             <Button x:Name="StartGameButton"  Content="Start Game" Click="StartGameButton_Click"></Button>
         </StackPanel>
-        
         <Grid x:Name="CheckersGrid" Margin="50,50,50,50">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>

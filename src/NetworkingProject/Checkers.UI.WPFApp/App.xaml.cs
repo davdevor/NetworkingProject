@@ -31,6 +31,7 @@ namespace Checkers.UI.WPFApp
             base.OnExit(e);
             Dispatcher.UnhandledException -= ResetGame;
             AppDomain.CurrentDomain.UnhandledException -= ResetGame;
+            ResetGame(null, null);
         }
     }
 }

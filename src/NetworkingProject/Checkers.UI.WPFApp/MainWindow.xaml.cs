@@ -47,18 +47,19 @@ namespace Checkers.UI.WPFApp
                 {
                     Button b = new Button();
                     b.Click += ButtonGrid_Click;
-                    if (_gameState[i][j] == 1)
-                    {
-                        b.Content = "R";
-                    }
-                    else if (_gameState[i][j] == 2)
-                    {
-                        b.Content = "B";
-
-                    }
                     gridChilds.Add(b);
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
+                    if (_gameState[i][j] == 1)
+                    {
+                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Red };
+
+                    }
+                    else if (_gameState[i][j] == 2)
+                    {
+                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Black };
+
+                    }
                 }
             }
         }
@@ -70,12 +71,21 @@ namespace Checkers.UI.WPFApp
             {
                 Thread.Sleep(1000);
             }
-            CheckersGrid.IsEnabled = false;
+            CheckersGrid.IsEnabled = true;
             StatusLabel.Content = "Your Turn";
         }
         private async void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
+            (sender as Button).Visibility = Visibility.Hidden;
             _playerId = await _repository.GetPlayerIdAsync();
+            if(_playerId == 1)
+            {
+                PlayerLabel.Content = "You are Red";
+            }
+            else
+            {
+                PlayerLabel.Content = "You are black";
+            }
             _gameState = await _repository.GetGameStateAsync();
             UpdateGrid();
             CheckersGrid.IsEnabled = false;
@@ -83,7 +93,6 @@ namespace Checkers.UI.WPFApp
             _gameState = await _repository.GetGameStateAsync();
             UpdateGrid();
             CheckersGrid.IsEnabled = true;
-            (sender as Button).Visibility = Visibility.Hidden;
         }
 
         private async void ButtonGrid_Click(object sender, RoutedEventArgs e)
@@ -132,11 +141,31 @@ namespace Checkers.UI.WPFApp
             if (waitForPlayer)
             {
                 await WaitForPlayer();
+                _gameState = await _repository.GetGameStateAsync();
+                UpdateGrid();
+                await CheckForWinner();
             }
             else
             {
                 StatusLabel.Content = text;
             }
+        }
+        private async Task CheckForWinner()
+        {
+            int winner = await _repository.CheckForWinnerAsync();
+            if(winner == 0)
+            {
+                return;
+            }
+            else if(winner == _playerId)
+            {
+                StatusLabel.Content = "You won";
+            }
+            else
+            {
+                StatusLabel.Content = "You lost";
+            }
+            CheckersGrid.IsEnabled = false;
         }
     }
 }

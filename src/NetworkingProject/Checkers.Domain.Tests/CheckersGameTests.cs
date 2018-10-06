@@ -8,6 +8,19 @@ namespace Checkers.Domain.Tests
     public class CheckersGameTests
     {
         [TestMethod]
+        public void _2545(){
+            // arrange
+            CheckersGame target = new CheckersGame();
+
+            // act
+            var result = target.Move(2, 5, 4, 5);
+
+            // assert
+            Assert.IsTrue(!result.ValidMove);
+            Assert.AreEqual(target.GetBoard()[2, 5], 1);
+            Assert.AreEqual(target.GetBoard()[4, 5], 0);
+        }
+        [TestMethod]
         public void CanMovePlayer1ToEmptySpace()
         {
             // arrange
