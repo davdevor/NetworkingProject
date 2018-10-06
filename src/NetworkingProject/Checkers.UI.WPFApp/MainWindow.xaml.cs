@@ -143,11 +143,29 @@ namespace Checkers.UI.WPFApp
                 await WaitForPlayer();
                 _gameState = await _repository.GetGameStateAsync();
                 UpdateGrid();
+                await CheckForWinner();
             }
             else
             {
                 StatusLabel.Content = text;
             }
+        }
+        private async Task CheckForWinner()
+        {
+            int winner = await _repository.CheckForWinnerAsync();
+            if(winner == 0)
+            {
+                return;
+            }
+            else if(winner == _playerId)
+            {
+                StatusLabel.Content = "You won";
+            }
+            else
+            {
+                StatusLabel.Content = "You lost";
+            }
+            CheckersGrid.IsEnabled = false;
         }
     }
 }
