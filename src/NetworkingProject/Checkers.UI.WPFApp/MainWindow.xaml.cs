@@ -78,6 +78,14 @@ namespace Checkers.UI.WPFApp
         {
             (sender as Button).Visibility = Visibility.Hidden;
             _playerId = await _repository.GetPlayerIdAsync();
+            if(_playerId == 1)
+            {
+                PlayerLabel.Content = "You are Red";
+            }
+            else
+            {
+                PlayerLabel.Content = "You are black";
+            }
             _gameState = await _repository.GetGameStateAsync();
             UpdateGrid();
             CheckersGrid.IsEnabled = false;
