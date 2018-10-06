@@ -50,18 +50,16 @@ namespace Checkers.UI.WPFApp
                     gridChilds.Add(b);
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
-                    
                     if (_gameState[i][j] == 1)
                     {
-                        b.Content = new Ellipse() { Width = 20,Height = 20,Fill = Brushes.Red, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                        
+                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Red };
+
                     }
                     else if (_gameState[i][j] == 2)
                     {
                         b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Black };
 
                     }
-                   
                 }
             }
         }
@@ -73,7 +71,7 @@ namespace Checkers.UI.WPFApp
             {
                 Thread.Sleep(1000);
             }
-            CheckersGrid.IsEnabled = false;
+            CheckersGrid.IsEnabled = true;
             StatusLabel.Content = "Your Turn";
         }
         private async void StartGameButton_Click(object sender, RoutedEventArgs e)
@@ -135,6 +133,8 @@ namespace Checkers.UI.WPFApp
             if (waitForPlayer)
             {
                 await WaitForPlayer();
+                _gameState = await _repository.GetGameStateAsync();
+                UpdateGrid();
             }
             else
             {

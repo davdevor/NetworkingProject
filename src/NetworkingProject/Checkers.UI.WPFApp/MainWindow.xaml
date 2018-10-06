@@ -11,13 +11,6 @@
             <Label x:Name="StatusLabel" Content="Checkers" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
             <Button x:Name="StartGameButton"  Content="Start Game" Click="StartGameButton_Click"></Button>
         </StackPanel>
-        <Button>
-                <Ellipse  Width="20" Height="20">
-
-                    </Ellipse>
-            
-        </Button>
-       
         <Grid x:Name="CheckersGrid" Margin="50,50,50,50">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
