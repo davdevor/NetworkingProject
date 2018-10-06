@@ -40,7 +40,7 @@ namespace Checkers.Infrastructure.Data
         /// <returns>next possible moves if any</returns>
         public async Task<Move> PlayMoveAsync(int fromX, int fromY, int toX, int toY)
         {
-            string url = _baseUrl + string.Format("PlayMove?fromX={0}&fromY={1}&toX={2}&toY={3}", fromX, fromY, toX, toY);
+            string url = _baseUrl + string.Format("PlayMove?fromRow={0}&fromCol={1}&toRow={2}&toCols={3}", fromX, fromY, toX, toY);
             return await _httpDeserializer.GetObjectFromRequestAsync<Move>(url);
         }
         /// <summary>
