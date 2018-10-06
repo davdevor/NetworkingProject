@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.UI.ConsoleApp", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.Domain.Tests", "Checkers.Domain.Tests\Checkers.Domain.Tests.csproj", "{D72AB75F-7203-4ED4-A765-3D8FF59FD4DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.UI.WPFApp", "Checkers.UI.WPFApp\Checkers.UI.WPFApp.csproj", "{119FEBCE-9E2B-4F50-9E2C-5518335DA479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{D72AB75F-7203-4ED4-A765-3D8FF59FD4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72AB75F-7203-4ED4-A765-3D8FF59FD4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D72AB75F-7203-4ED4-A765-3D8FF59FD4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{119FEBCE-9E2B-4F50-9E2C-5518335DA479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119FEBCE-9E2B-4F50-9E2C-5518335DA479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119FEBCE-9E2B-4F50-9E2C-5518335DA479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119FEBCE-9E2B-4F50-9E2C-5518335DA479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{714DEC23-388B-487C-A295-11081F9222DB} = {DAACE024-D317-4A5B-BAE9-79D4C1BD83E5}
 		{B47E88E5-CAA7-4B57-9B13-E577A737D36D} = {DAACE024-D317-4A5B-BAE9-79D4C1BD83E5}
 		{D72AB75F-7203-4ED4-A765-3D8FF59FD4DC} = {9923C8A9-29EF-4DA7-A006-C7B9B9E0AEFC}
+		{119FEBCE-9E2B-4F50-9E2C-5518335DA479} = {DAACE024-D317-4A5B-BAE9-79D4C1BD83E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC5D39FD-73BF-4D06-9420-D90ABC4AF717}
