@@ -93,6 +93,14 @@ namespace Checkers.Domain.Objects
             return moves;
         }
 
+        /// <summary>
+        /// returns a tuple first item is for valid move and second item is for jump
+        /// </summary>
+        /// <param name="fromX"></param>
+        /// <param name="fromY"></param>
+        /// <param name="toX"></param>
+        /// <param name="toY"></param>
+        /// <returns></returns>
         public Tuple<bool, bool> ValidMove(int fromX, int fromY, int toX, int toY)
         {
 
@@ -124,7 +132,7 @@ namespace Checkers.Domain.Objects
                         {
                             if (_board[fromX + 1, fromY + 1] != 1)
                             {
-                                _board[fromX + 1, fromY + 1] = 0;
+                                //_board[fromX + 1, fromY + 1] = 0;
                             }
                             else
                             {
@@ -135,7 +143,7 @@ namespace Checkers.Domain.Objects
                         {
                             if (_board[fromX + 1, fromY - 1] != 1)
                             {
-                                _board[fromX + 1, fromY - 1] = 0;
+                               // _board[fromX + 1, fromY - 1] = 0;
 
                             }
                             else
@@ -165,7 +173,7 @@ namespace Checkers.Domain.Objects
                         {
                             if (_board[fromX - 1, fromY + 1] != 2)
                             {
-                                _board[fromX - 1, fromY + 1] = 0;
+                                //_board[fromX - 1, fromY + 1] = 0;
 
                             }
                             else
@@ -177,7 +185,7 @@ namespace Checkers.Domain.Objects
                         {
                             if (_board[fromX - 1, fromY - 1] != 2)
                             {
-                                _board[fromX - 1, fromY - 1] = 0;
+                                //_board[fromX - 1, fromY - 1] = 0;
                             }
                             else
                             {

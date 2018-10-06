@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-            <Label Content="Checkers" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
+            <Label x:Name="StatusLabel" Content="Checkers" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
             <Button x:Name="StartGameButton"  Content="Start Game" Click="StartGameButton_Click"></Button>
         </StackPanel>
         
