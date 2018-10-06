@@ -47,18 +47,21 @@ namespace Checkers.UI.WPFApp
                 {
                     Button b = new Button();
                     b.Click += ButtonGrid_Click;
-                    if (_gameState[i][j] == 1)
-                    {
-                        b.Content = "R";
-                    }
-                    else if (_gameState[i][j] == 2)
-                    {
-                        b.Content = "B";
-
-                    }
                     gridChilds.Add(b);
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
+                    
+                    if (_gameState[i][j] == 1)
+                    {
+                        b.Content = new Ellipse() { Width = 20,Height = 20,Fill = Brushes.Red, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
+                        
+                    }
+                    else if (_gameState[i][j] == 2)
+                    {
+                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Black };
+
+                    }
+                   
                 }
             }
         }
@@ -75,6 +78,7 @@ namespace Checkers.UI.WPFApp
         }
         private async void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
+            (sender as Button).Visibility = Visibility.Hidden;
             _playerId = await _repository.GetPlayerIdAsync();
             _gameState = await _repository.GetGameStateAsync();
             UpdateGrid();
@@ -83,7 +87,6 @@ namespace Checkers.UI.WPFApp
             _gameState = await _repository.GetGameStateAsync();
             UpdateGrid();
             CheckersGrid.IsEnabled = true;
-            (sender as Button).Visibility = Visibility.Hidden;
         }
 
         private async void ButtonGrid_Click(object sender, RoutedEventArgs e)
