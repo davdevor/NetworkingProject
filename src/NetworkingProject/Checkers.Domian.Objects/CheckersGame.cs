@@ -130,7 +130,7 @@ namespace Checkers.Domain.Objects
                     {
                         if (fromY < toY)
                         {
-                            if (_board[fromX + 1, fromY + 1] != 1)
+                            if (_board[fromX + 1, fromY + 1] != 1 && _board[fromX + 1, fromY + 1] != 0)
                             {
                                 _board[fromX + 1, fromY + 1] = 0;
                             }
@@ -141,10 +141,9 @@ namespace Checkers.Domain.Objects
                         }
                         else
                         {
-                            if (_board[fromX + 1, fromY - 1] != 1)
+                            if (_board[fromX + 1, fromY - 1] != 1 && _board[fromX + 1, fromY - 1] != 0 )
                             {
                                _board[fromX + 1, fromY - 1] = 0;
-
                             }
                             else
                             {
@@ -176,7 +175,7 @@ namespace Checkers.Domain.Objects
                     {
                         if (fromY < toY)
                         {
-                            if (_board[fromX - 1, fromY + 1] != 2)
+                            if (_board[fromX - 1, fromY + 1] != 2 && _board[fromX - 1, fromY + 1] != 0)
                             {
                                 _board[fromX - 1, fromY + 1] = 0;
 
@@ -188,7 +187,7 @@ namespace Checkers.Domain.Objects
                         }
                         else
                         {
-                            if (_board[fromX - 1, fromY - 1] != 2)
+                            if (_board[fromX - 1, fromY - 1] != 2 && _board[fromX - 1, fromY - 1] != 0)
                             {
                                 _board[fromX - 1, fromY - 1] = 0;
                             }

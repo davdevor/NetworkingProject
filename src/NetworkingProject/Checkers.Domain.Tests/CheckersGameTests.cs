@@ -128,5 +128,20 @@ namespace Checkers.Domain.Tests
             Assert.AreEqual(target.GetBoard()[4, 3], 1);
             Assert.AreEqual(target.GetBoard()[6, 5], 2);
         }
+
+        [TestMethod]
+        public void CannontMoveMoreThanOneSpaceForRegularMove()
+        {
+            // arrange
+            CheckersGame target = new CheckersGame();
+
+            // act
+            var result = target.Move(2, 1, 4, 3);
+
+            // assert
+            Assert.IsFalse(result.ValidMove);
+            Assert.AreEqual(target.GetBoard()[4, 3], 0);
+            Assert.AreEqual(target.GetBoard()[2, 1], 1);
+        }
     }
 }
