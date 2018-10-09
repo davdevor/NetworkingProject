@@ -45,19 +45,23 @@ namespace Checkers.UI.WPFApp
             {
                 for (int j = 0; j < _gameState.Length; ++j)
                 {
-                    Button b = new Button();
+                    Button b = new Button()
+                    {
+                        MinHeight = 40,
+                        MinWidth = 40
+                    };
                     b.Click += ButtonGrid_Click;
                     gridChilds.Add(b);
                     Grid.SetRow(b, i);
                     Grid.SetColumn(b, j);
                     if (_gameState[i][j] == 1)
                     {
-                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Red };
+                        b.Content = new Ellipse() { Width = 30, Height = 30, Fill = Brushes.Red };
 
                     }
                     else if (_gameState[i][j] == 2)
                     {
-                        b.Content = new Ellipse() { Width = 20, Height = 20, Fill = Brushes.Black };
+                        b.Content = new Ellipse() { Width = 30, Height = 30, Fill = Brushes.Black };
 
                     }
                 }
@@ -67,10 +71,13 @@ namespace Checkers.UI.WPFApp
         {
             CheckersGrid.IsEnabled = false;
             StatusLabel.Content = "Waiting on other player";
-            while (!await _repository.IsMyTurnAsync(_playerId))
+            await Task.Run(async () =>
             {
-                Thread.Sleep(1000);
-            }
+                while (!await _repository.IsMyTurnAsync(_playerId))
+                {
+                    Thread.Sleep(1000);
+                }
+            });
             CheckersGrid.IsEnabled = true;
             StatusLabel.Content = "Your Turn";
         }
