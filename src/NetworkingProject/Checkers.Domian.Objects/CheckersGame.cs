@@ -65,11 +65,11 @@ namespace Checkers.Domain.Objects
             {
                 if (fromRow + 2 <= 7)
                 {
-                    if (fromCol + 2 <= 7 && _board[fromRow + 1, fromCol + 1] != 1 && _board[fromRow + 2, fromCol + 2] == 0)
+                    if (fromCol + 2 <= 7 && _board[fromRow + 1, fromCol + 1] != 1 && fromCol + 2 <= 7 && _board[fromRow + 1, fromCol + 1] != 0 && _board[fromRow + 2, fromCol + 2] == 0)
                     {
                         moves.Add(new Tuple<int, int>(fromRow + 2, fromCol + 2));
                     }
-                    if (fromCol - 2 >= 0 && _board[fromRow + 1, fromCol - 1] != 1 && _board[fromRow + 2, fromCol - 2] == 0)
+                    if (fromCol - 2 >= 0 && _board[fromRow + 1, fromCol - 1] != 1 && fromCol - 2 >= 0 && _board[fromRow + 1, fromCol - 1] != 0 && _board[fromRow + 2, fromCol - 2] == 0)
                     {
                         moves.Add(new Tuple<int, int>(fromRow + 2, fromCol - 2));
                     }
@@ -80,11 +80,11 @@ namespace Checkers.Domain.Objects
                 if (fromRow - 2 >= 0)
                 {
 
-                    if (fromCol + 2 <= 7 && _board[fromRow - 1, fromCol + 1] != 2 && _board[fromRow - 2, fromCol + 2] == 0)
+                    if (fromCol + 2 <= 7 && _board[fromRow - 1, fromCol + 1] != 2 && fromCol + 2 <= 7 && _board[fromRow - 1, fromCol + 1] != 0 && _board[fromRow - 2, fromCol + 2] == 0)
                     {
                         moves.Add(new Tuple<int, int>(fromRow - 2, fromCol + 2));
                     }
-                    if (fromCol - 2 >= 0 && _board[fromRow - 1, fromCol - 1] != 2 && _board[fromRow - 2, fromCol - 2] == 0)
+                    if (fromCol - 2 >= 0 && _board[fromRow - 1, fromCol - 1] != 2 && fromCol - 2 >= 0 && _board[fromRow - 1, fromCol - 1] != 0 && _board[fromRow - 2, fromCol - 2] == 0)
                     {
                         moves.Add(new Tuple<int, int>(fromRow - 2, fromCol + 2));
                     }
