@@ -111,6 +111,24 @@ namespace Checkers.Domain.Tests
             Assert.AreEqual(target.GetBoard()[5, 0], 1);
             Assert.AreEqual(target.GetBoard()[4, 1], 0);
         }
+        [TestMethod]
+        public void CannotjumpAgainIfNotAllowedAfterFirstJump()
+        {
+            // arrange
+            CheckersGame target = new CheckersGame();
+            int[,] board = target.GetBoard();
+            board[6, 1] = 0;
+            board[7, 2] = 0;
+            // act
+            target.Move(2, 1, 3, 2);
+            target.Move(5, 0, 4, 1);
+            var result = target.Move(3, 2, 5, 0);
+
+            // assert
+            Assert.IsTrue(result.ValidMove);
+            Assert.AreEqual(target.GetBoard()[5, 0], 1);
+            Assert.AreEqual(target.GetBoard()[4, 1], 0);
+        }
 
         [TestMethod]
         public void CannotJumpAEnemyToAFilledSpace()
